@@ -1,0 +1,4 @@
+<%= link_to "login omniauth", '/auth/instagram' %>
+<br>
+<br>
+<%= link_to "login normal", "https://api.instagram.com/oauth/authorize?client_id=#{ENV['INSTAGRAM_CLIENT_ID']}&redirect_uri=#{ENV['INSTAGRAM_REDIRECT_URI']}&scope=user_profile,user_media&response_type=code" %>
