@@ -96,9 +96,6 @@ GEM
     connection_pool (2.4.1)
     crass (1.0.6)
     date (3.3.3)
-    debug (1.8.0)
-      irb (>= 1.5.0)
-      reline (>= 0.3.1)
     dotenv (2.8.1)
     dotenv-rails (2.8.1)
       dotenv (= 2.8.1)
@@ -291,7 +288,6 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   capybara
-  debug
   dotenv-rails
   httparty
   importmap-rails
@@ -308,11 +304,10 @@ DEPENDENCIES
   sqlite3 (~> 1.4)
   stimulus-rails
   turbo-rails
-  tzinfo-data
   web-console
 
 RUBY VERSION
-   ruby 3.2.2p53
+   ruby 3.0.6p216
 
 BUNDLED WITH
    2.4.10
