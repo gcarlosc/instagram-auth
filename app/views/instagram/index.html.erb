@@ -1,0 +1,22 @@
+<% if @access_token %>
+  <% if @insta_account %>
+    <br>
+    <%#= link_to 'user info', instagram_user_info_path %>
+    <br>
+    <br>
+    <%= link_to 'user info/insights', instagram_user_insights_path %>
+    <br>
+    <br>
+    <%= link_to 'media info/insights', instagram_media_insights_path %>
+  <% else %>
+    <p>No se encontró una cuenta de instagram</p>
+  <% end %>
+<% else %>
+  <p>No hay access token</p>
+<% end %>
+<br>
+<br>
+<% link_to 'ir atrás', instagram_path %>
+<br>
+<br>
+<% link_to 'inicio', new_session_path %>

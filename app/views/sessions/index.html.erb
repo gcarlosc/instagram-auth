@@ -1,5 +1,15 @@
+<% if @access_token %>
+  <br>
+  <%= link_to 'user', user_sessions_path %>
+  <br>
+  <br>
+  <%= link_to 'media', media_sessions_path %>
+<% else %>
+  <p>No hay access token</p>
+<% end %>
 <br>
-<%= link_to 'user', user_sessions_path %>
+<br>
+<% link_to 'ir atrás', sessions_path %>
 <br>
 <br>
-<%= link_to 'media', media_sessions_path %>
+<% link_to 'inicio', new_session_path %>

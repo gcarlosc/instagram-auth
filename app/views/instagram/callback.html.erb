@@ -1,0 +1,20 @@
+<script>
+$(document).ready(function() {
+  var fragment = window.location.hash.substring(1);
+  var params = new URLSearchParams(fragment);
+  var access_token = params.get("access_token");
+
+  var csrfToken = $('meta[name="csrf-token"]').attr('content');
+  $.ajax({
+    url: "/instagram/access",
+    method: "POST",
+    headers: {
+      'X-CSRF-Token': csrfToken
+    },
+    data: { access_token: access_token },
+    success: function(response) {
+      window.location.href = "/instagram";
+    }
+  });
+});
+</script>

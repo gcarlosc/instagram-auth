@@ -69,7 +69,8 @@ group :test do
 end
 
 gem 'omniauth'
-gem 'omniauth-instagram'
+gem 'omniauth-facebook'
+gem 'koala'
 # gem "omniauth-rails_csrf_protection"
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'httparty'

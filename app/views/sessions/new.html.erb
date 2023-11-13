@@ -1,4 +1,6 @@
-<%= link_to "login omniauth", '/auth/instagram' %>
 <br>
 <br>
-<%= link_to "login normal", "https://api.instagram.com/oauth/authorize?client_id=#{ENV['INSTAGRAM_CLIENT_ID']}&redirect_uri=#{ENV['INSTAGRAM_REDIRECT_URI']}&scope=user_profile,user_media&response_type=code" %>
+<%= link_to "auth instagram basic api", "https://api.instagram.com/oauth/authorize?client_id=#{ENV['INSTAGRAM_CLIENT_ID_BASIC']}&redirect_uri=#{ENV['INSTAGRAM_REDIRECT_URI_BASIC']}&scope=user_profile,user_media&response_type=code" %>
+<br>
+<br>
+<%= link_to "auth onboard graph api", "https://www.facebook.com/v18.0/dialog/oauth?client_id=#{ENV['INSTAGRAM_CLIENT_ID_GRAPH']}&display=page&extras={'setup':{'channel':'IG_API_ONBOARDING'}}&redirect_uri=#{ENV['INSTAGRAM_REDIRECT_URI_GRAPH']}&response_type=token&scope=instagram_basic,pages_show_list,pages_read_engagement,instagram_manage_insights,business_management" %>
