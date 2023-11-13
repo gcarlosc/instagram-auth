@@ -9,4 +9,5 @@ else
   bind "tcp://127.0.0.1"
 end
 
+preload_app!
 plugin :tmp_restart
