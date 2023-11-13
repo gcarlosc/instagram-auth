@@ -1,7 +1,7 @@
-threads 5, 5
+threads 2, 2
 port ENV.fetch('PORT') { 3000 }
 environment ENV.fetch('RACK_ENV') { 'development' }
-workers 0
+# workers 0
 
 if ENV['RACK_ENV'] == 'production'
   bind "unix:///var/run/puma/my_app.sock"
