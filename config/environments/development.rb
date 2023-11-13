@@ -72,7 +72,7 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   # Raise error when a before_action's only/except options reference missing actions
-  config.action_controller.raise_on_missing_callback_actions = true
+  # config.action_controller.raise_on_missing_callback_actions = true
   config.hosts << "cfa9-38-25-34-122.ngrok-free.app"
   # config.web_console.permissions = '38.25.34.122'
 end
