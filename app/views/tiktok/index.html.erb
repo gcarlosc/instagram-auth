@@ -1,0 +1,4 @@
+<%= link_to 'login tiktok', '/auth/tiktok' %>
+
+<h1>Connect with TikTok</h1>
+<a href="https://open-api.tiktok.com/platform/oauth/connect?client_key=<%= ENV['TIKTOK_CLIENT_ID_BASIC'] %>&response_type=code&redirect_uri=<%= CGI.escape(ENV['TIKTOK_REDIRECT_URI_BASIC']) %>&scope=user.info.basic,user.info.profile,user.info.stats">Connect</a>

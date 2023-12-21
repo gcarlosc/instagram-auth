@@ -17,4 +17,8 @@ Rails.application.routes.draw do
   get '/instagram/user_info', to: 'instagram#user_info'
   get '/instagram/user_insights', to: 'instagram#user_insights'
   get '/instagram/media_insights', to: 'instagram#media_insights'
+
+  resources :tiktok, only: [:index]
+  get '/auth/tiktok', to: 'tiktok#tiktok_auth'
+  get '/auth/tiktok/callback', to: 'tiktok#callback'
 end

@@ -69,8 +69,10 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem 'omniauth'
-gem 'omniauth-facebook'
+# gem 'omniauth'
+# gem 'omniauth-facebook'
 gem 'koala'
 # gem "omniauth-rails_csrf_protection"
 gem 'httparty'
+
+gem 'omniauth-tiktok'
