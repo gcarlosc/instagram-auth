@@ -1,4 +1,14 @@
-<%= link_to 'login tiktok', '/auth/tiktok' %>
-
-<h1>Connect with TikTok</h1>
-<a href="https://open-api.tiktok.com/platform/oauth/connect?client_key=<%= ENV['TIKTOK_CLIENT_ID_BASIC'] %>&response_type=code&redirect_uri=<%= CGI.escape(ENV['TIKTOK_REDIRECT_URI_BASIC']) %>&scope=user.info.basic,user.info.profile,user.info.stats">Connect</a>
+<%= link_to 'login tiktok', '/auth/tiktok/login' %>
+<br>
+<br>
+<%= link_to 'tiktok research token', '/tiktok/research_token' %>
+<br>
+<br>
+<% if session[:tiktok_token_client].present? %>
+  <%= link_to 'research user', '/tiktok/research_api' %>
+<% end %>
+<br>
+<br>
+<% if @user_info %>
+  <%= @user_info %>
+<% end %>

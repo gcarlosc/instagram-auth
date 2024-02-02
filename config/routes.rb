@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  # get '/auth/:provider/callback', to: 'sessions#create'
-  # get '/auth/failure', to: 'sessions#failure'
-  # get '/signout', to: 'sessions#destroy', as: 'signout'
-
   root to: "sessions#new"
 
   resources :sessions do
@@ -18,7 +14,10 @@ Rails.application.routes.draw do
   get '/instagram/user_insights', to: 'instagram#user_insights'
   get '/instagram/media_insights', to: 'instagram#media_insights'
 
-  resources :tiktok, only: [:index]
-  get '/auth/tiktok', to: 'tiktok#tiktok_auth'
-  get '/auth/tiktok/callback', to: 'tiktok#callback'
+  resources :tiktok, only: [:index] do
+    get :research_token, on: :collection
+    get :research_api, on: :collection
+  end
+  get '/auth/tiktok/login', to: 'tiktok#tiktok_auth'
+  get '/auth/callback', to: 'tiktok#callback'
 end
