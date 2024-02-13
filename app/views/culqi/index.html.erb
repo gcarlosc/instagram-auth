@@ -1,0 +1,90 @@
+<form>
+  <div>
+    <label>
+      <span>Correo Electrónico</span>
+      <input type="text" size="50" data-culqi="card[email]" id="card[email]">
+    </label>
+  </div>
+  <div>
+    <label>
+      <span>Número de tarjeta</span>
+      <input type="text" size="20" data-culqi="card[number]" id="card[number]">
+    </label>
+  </div>
+  <div>
+    <label>
+      <span>CVV</span>
+      <input type="text" size="4" data-culqi="card[cvv]" id="card[cvv]">
+    </label>
+  </div>
+  <div>
+    <label>
+      <span>Fecha expiración (MM/YYYY)</span>
+      <input size="2" data-culqi="card[exp_month]" id="card[exp_month]">
+      <span>/</span>
+      <input size="4" data-culqi="card[exp_year]" id="card[exp_year]">
+    </label>
+  </div>
+  <!--Para habilitar CSI debemos agregar el siguiente select-->
+  <div>
+	  <label>
+		  <span>Cuotas</span>
+	  </label>
+	  <select disabled id="card[installments]">
+		  <option value="1">selecciona...</option>
+	  </select>
+	</div>
+</form>
+<button id="btn_pagar">Pagar</button>
+
+<script>
+  Culqi.publicKey = 'Aquí inserta tu llave pública';
+  Culqi.settings({
+    currency: 'PEN',
+    // amount: 3500, // Este parámetro es requerido para realizar pagos yape
+    xculqirsaid: 'Inserta aquí el id de tu llave pública RSA',
+    rsapublickey: 'Inserta aquí tu llave pública RSA',
+  });
+  Culqi.options({
+    paymentMethods: {
+      tarjeta: true,
+    }
+  });
+
+  const btn_pagar = document.getElementById("btn_pagar");
+  // Validamos los métodos de pago por el cual podras hacer la compra
+  Culqi.validationPaymentMethods();
+  //Obtenemos los metodos de pagos disponibles
+  var paymentTypeAvailable = Culqi.paymentOptionsAvailable;
+  btn_pagar.addEventListener("click", function (e) {
+    // Crea el objeto Token con Culqi JS
+    if (paymentTypeAvailable.token.available) {
+      paymentTypeAvailable.token.generate();
+    }
+    e.preventDefault();
+  });
+
+  function culqi() {
+    if (Culqi.token) {
+      // Objeto Token creado exitosamente!
+      const token = Culqi.token.id;
+      console.log("Se ha creado un Token: ", token);
+    } else if (Culqi.order) {
+      // Objeto order creado exitosamente!
+      const order = Culqi.order;
+      console.log("Se ha creado el objeto Order: ", order);
+      if (order.paymentCode) {
+        console.log("Se ha creado el cip: ", order.paymentCode);
+      }
+      if (order.qr) {
+        console.log("Se ha generado el qr: ", order.qr);
+      }
+      if (order.cuotealo) {
+        console.log("Se ha creado el link cuotéalo: ", order.cuotealo);
+      }
+    } else {
+      // Mostramos JSON de objeto error en consola
+      console.log("Error : ", Culqi.error);
+    }
+  }
+</script>

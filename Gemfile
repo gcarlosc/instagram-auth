@@ -76,3 +76,5 @@ gem 'koala'
 gem 'httparty'
 
 gem 'omniauth-tiktok'
+
+gem 'mercadopago-sdk'

@@ -8,9 +8,12 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js' %>
+    <%= javascript_include_tag 'https://sdk.mercadopago.com/js/v2' %>
+    <%= javascript_include_tag 'https://checkout.culqi.com/js/v4' %>
   </head>
 
   <body>
+    <%#= csrf_meta_tags %>
     <%= yield %>
   </body>
   <script>

@@ -20,4 +20,19 @@ Rails.application.routes.draw do
   end
   get '/auth/tiktok/login', to: 'tiktok#tiktok_auth'
   get '/auth/callback', to: 'tiktok#callback'
+
+
+  resources :subscriptions, only: [:index, :create] do
+    post :create_payment, on: :collection
+    get :new_card, on: :collection
+    post :create_card, on: :collection
+  end
+
+  namespace :payment_gateway, path: 'pg' do
+    resources :payment, only: [:create] do
+      post :create_sub, on: :collection
+    end
+  end
+
+  resources :culqi, only: [:index, :create]
 end

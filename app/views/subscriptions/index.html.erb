@@ -1,0 +1,66 @@
+<form id="form-checkout" method="POST" action="/subscriptions">
+  <select type="text" id="form-checkout__cardId"></select>
+  <div id="form-checkout__securityCode-container" class="container"></div>
+  <input name="token" id="token" hidden>
+  <button>Enviar</button>
+</form>
+
+<script>
+  const mp = new MercadoPago('TEST-2f87e803-eed9-4a59-90b7-c5a6ef6554f3');
+
+  const securityCodeElement = mp.fields.create('securityCode', {
+    placeholder: "CVV"
+  }).mount('form-checkout__securityCode-container');
+
+  const customerCards = <%= @cards.to_json.html_safe %>
+  console.log(customerCards)
+
+  function appendCardToSelect() {
+    const selectElement = document.getElementById('form-checkout__cardId');
+    const tmpFragment = document.createDocumentFragment();
+    customerCards.forEach(({ id, last_four_digits, payment_method }) => {
+      console.log(id, last_four_digits, payment_method)
+      const optionElement = document.createElement('option');
+      optionElement.setAttribute('value', id)
+      optionElement.textContent = `${payment_method.name} finalizada en ${last_four_digits}`
+      tmpFragment.appendChild(optionElement);
+    })
+    selectElement.appendChild(tmpFragment)
+  }
+  appendCardToSelect();
+
+  const formElement = document.getElementById('form-checkout');
+  formElement.addEventListener('submit', e => createCardToken(e));
+  const createCardToken = async (event) => {
+    try {
+      const tokenElement = document.getElementById('token');
+      if (!tokenElement.value) {
+        event.preventDefault();
+        const token = await mp.fields.createCardToken({
+          cardId: document.getElementById('form-checkout__cardId').value
+        });
+        tokenElement.value = token.id;
+        console.log(token.id);
+        formElement.requestSubmit();
+      }
+    } catch (e) {
+      console.error('error creating card token: ', e)
+    }
+  }
+</script>
+
+<style>
+    #form-checkout {
+      display: flex;
+      flex-direction: column;
+      max-width: 600px;
+    }
+
+    .container {
+      height: 18px;
+      display: inline-block;
+      border: 1px solid rgb(118, 118, 118);
+      border-radius: 2px;
+      padding: 1px 2px;
+    }
+  </style>
