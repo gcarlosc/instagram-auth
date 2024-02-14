@@ -26,6 +26,8 @@ Rails.application.routes.draw do
     post :create_payment, on: :collection
     get :new_card, on: :collection
     post :create_card, on: :collection
+    get :remove_cards, on: :collection
+    get :list_payments, on: :collection
   end
 
   namespace :payment_gateway, path: 'pg' do

@@ -1,9 +1,45 @@
+<% if flash[:notice] %>
+  <div class="notice">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
+
 <form id="form-checkout" method="POST" action="/subscriptions">
   <select type="text" id="form-checkout__cardId"></select>
   <div id="form-checkout__securityCode-container" class="container"></div>
   <input name="token" id="token" hidden>
   <button>Enviar</button>
 </form>
+
+<%= link_to 'Agregar método de pago', new_card_subscriptions_path, class: "add-payment-method-button" %>
+<%= link_to 'Eliminar tarjetas', remove_cards_subscriptions_path, disabled: true, onclick: "this.disabled=true;", class: "remove-button" %>
+<%= link_to 'listar pagos', list_payments_subscriptions_path, class: "list-button" %>
+
+<style>
+.add-payment-method-button {
+  display: inline-block;
+  padding: 4px 8px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+.remove-button {
+  padding: 4px 8px;
+  background-color: orange;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+.list-button {
+  padding: 4px 8px;
+  background-color: green;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+</style>
 
 <script>
   const mp = new MercadoPago('TEST-2f87e803-eed9-4a59-90b7-c5a6ef6554f3');
